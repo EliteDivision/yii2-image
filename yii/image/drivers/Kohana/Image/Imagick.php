@@ -359,6 +359,9 @@ class Kohana_Image_Imagick extends Kohana_Image {
          */
         protected function _get_imagetype($extension)
         {
+                if(!defined('IMAGETYPE_WEBP')){
+                    define('IMAGETYPE_WEBP', 18);
+                }
                 // Normalize the extension to a format
                 $format = strtolower($extension);
 
@@ -373,6 +376,9 @@ class Kohana_Image_Imagick extends Kohana_Image {
                         break;
                         case 'png':
                                 $type = IMAGETYPE_PNG;
+                        break;
+                        case 'webp':
+                                $type = IMAGETYPE_WEBP;
                         break;
                         default:
                                 throw new ErrorException(sprintf('Installed ImageMagick does not support %s images',$extension));
