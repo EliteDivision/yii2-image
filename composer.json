@@ -1,5 +1,5 @@
 {
-    "name": "elitedivision/yii2-image",
+    "name": "open20/yii2-image",
     "description": "Yii2 extension for image manipulating using Kohana Image Library.",
     "keywords": ["yii2", "extension", "image"],
     "homepage": "https://github.com/yurkinx/yii2-image",
