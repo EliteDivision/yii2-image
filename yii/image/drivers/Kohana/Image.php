@@ -192,7 +192,7 @@ abstract class Kohana_Image {
          * @return  $this
          * @uses    Image::_do_resize
          */
-        public function resize($width = NULL, $height = NULL, $master = NULL, $quality = NULL)
+        public function resize($width = NULL, $height = NULL, $master = NULL, $quality = NULL, $isWebp = false)
         {
                 if($quality === NULL){
                     $quality = 1;
@@ -343,7 +343,7 @@ abstract class Kohana_Image {
             // The quality must be in the range of 1 to 100
                 $quality = min(max($quality, 1), 100);
 
-                $this->_do_resize($width, $height, $quality);
+                $this->_do_resize($width, $height, $quality, $isWebp);
 
                 return $this;
         }
@@ -763,7 +763,7 @@ abstract class Kohana_Image {
          * @param   integer  $quality quality of output image: 1-100. default 1 for best resizing speed
          * @return  void
          */
-        abstract protected function _do_resize($width, $height, $quality);
+        abstract protected function _do_resize($width, $height, $quality, $isWebp = false);
 
         /**
          * Adaptation the image.

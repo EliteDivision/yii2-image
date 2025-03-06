@@ -94,8 +94,22 @@ class Kohana_Image_Imagick extends Kohana_Image {
          * @param int $quality
          * @return bool
          */
-        protected function _do_resize($width, $height, $quality)
+        protected function _do_resize($width, $height, $quality, $isWebp = false)
         {
+            if ($isWebp) {
+                $this->im->setImageFormat('webp');
+                $this->im->setOption('webp:preprocessing', 1);
+                $this->im->setOption('webp:method', 6);
+
+                if ($this->im->resizeImage($width, $height, Imagick::FILTER_LANCZOS, 1)) {
+                    // Reset the width and height
+                    $this->width = $this->im->getImageWidth();
+                    $this->height = $this->im->getImageHeight();
+
+                    return TRUE;
+                }
+            }
+
             if($quality == 100) {
                 if ($this->im->resizeImage($width, $height, Imagick::FILTER_LANCZOS, 1)) {
                     // Reset the width and height
